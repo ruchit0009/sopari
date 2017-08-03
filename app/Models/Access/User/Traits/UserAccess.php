@@ -183,12 +183,13 @@ trait UserAccess
      */
     public function attachRole($role)
     {
+       
         if (is_object($role)) {
             $role = $role->getKey();
         }
 
         if (is_array($role)) {
-            $role = $role['id'];
+            $role = $role[0];
         }
 
         $this->roles()->attach($role);
@@ -208,7 +209,7 @@ trait UserAccess
         }
 
         if (is_array($role)) {
-            $role = $role['id'];
+            $role = $role[0];
         }
 
         $this->roles()->detach($role);

@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Models\Customer;
+namespace App\Models\Order;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Customer\Traits\Attribute\CustomerAttribute;
+use App\Models\Order\Traits\Attribute\OrderAttribute;
 use App\Models\Common\Traits\Observer\CommonObserver;
 
-class CustomerModel extends Model {
+class OrderModel extends Model {
 
     use SoftDeletes,
         CommonObserver,
-        CustomerAttribute;
+        OrderAttribute;
 
     protected $table;
 
@@ -19,7 +19,7 @@ class CustomerModel extends Model {
      *
      * @var array
      */
-    protected $fillable = ['name','order_payment','credit_payment'];
+    protected $fillable = ['customer_name','qty','grand_total','delivery_charge','packing','final_amount'];
     
       protected $dates = ['deleted_at'];
 
@@ -27,7 +27,7 @@ class CustomerModel extends Model {
 
     public function __construct(array $attributes = []) {
         parent::__construct($attributes);
-        $this->table = config('access.customer_table');
+        $this->table = config('access.order_table');
     }
 
 

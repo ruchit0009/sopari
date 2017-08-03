@@ -114,6 +114,12 @@ return [
             'list' => 'Product List',
             'management' => 'Product Management',
         ],
+        'order' => [
+            'create' => 'Create Order',
+            'edit' => 'Edit Order',
+            'list' => 'Order List',
+            'management' => 'Order Management',
+        ],
     ],
 
     'frontend' => [

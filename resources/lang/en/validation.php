@@ -163,6 +163,12 @@ return [
                 'name'   => 'Name',
                 'qty'   => 'Quantity',
             ],
+            'order' => [
+                'cust'   => 'Customer',
+                'qty'   => 'Quantity',
+                'price'=>'Price',
+                'product' =>'Product',
+            ],
            
             
         ],

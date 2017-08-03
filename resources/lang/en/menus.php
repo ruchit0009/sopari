@@ -43,6 +43,9 @@ return [
          'product'=>[
           'title'=>'Product Management',   
         ],
+         'order'=>[
+          'title'=>'Order Management',   
+        ],
 
         'log-viewer' => [
             'main'      => 'Log Viewer',

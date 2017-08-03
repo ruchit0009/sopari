@@ -50,6 +50,17 @@ return [
      */
     'product_table' => 'product',
    
+    /*
+     * order table used by Access to save assigned roles to the database.
+     */
+    'order_table' => 'order',
+    
+    
+    /*
+     * order_product table used by Access to save assigned roles to the database.
+     */
+    'order_product_table' => 'order_product',
+   
 
     /*
      * Configurations for the user
