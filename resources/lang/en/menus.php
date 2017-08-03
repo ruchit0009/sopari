@@ -40,6 +40,9 @@ return [
          'customer'=>[
           'title'=>'Customer Management',   
         ],
+         'product'=>[
+          'title'=>'Product Management',   
+        ],
 
         'log-viewer' => [
             'main'      => 'Log Viewer',

@@ -73,9 +73,7 @@
                 </ul>
             </li>
             
-         @endauth
-           
-            <li class="{{ active_class(Active::checkUriPattern('admin/customer*')) }} treeview">
+             <li class="{{ active_class(Active::checkUriPattern('admin/customer*')) }} treeview">
                 <a href="#">
                     <i class="fa fa-dashboard"></i>
                     <span>{{ trans('menus.backend.customer.title') }}</span>
@@ -102,16 +100,58 @@
                             @endif
                         </a>
                     </li>
-                    @role(1)
+                  
                     <li class="{{ active_class(Active::checkUriPattern('admin/customer/create*')) }}">
                         <a href="{{ route('admin.customer.create') }}">
                             <i class="fa fa-circle-o"></i>
                             <span>{{ trans('labels.backend.customer.create') }}</span>
                         </a>
                     </li>
-                     @endauth
+                     
                 </ul>
             </li>
+            
+             <li class="{{ active_class(Active::checkUriPattern('admin/product*')) }} treeview">
+                <a href="#">
+                    <i class="fa fa-dashboard"></i>
+                    <span>{{ trans('menus.backend.product.title') }}</span>
+
+                    @if ($pending_approval > 0)
+                        <span class="label label-danger pull-right">{{ $pending_approval }}</span>
+                    @else
+                        <i class="fa fa-angle-left pull-right"></i>
+                    @endif
+                </a>
+
+                <ul class="treeview-menu {{ active_class(Active::checkUriPattern('admin/product*'), 'menu-open') }}" style="display: none; {{ active_class(Active::checkUriPattern('admin/product*'), 'display: block;') }}">
+                  @if(request()->route()->uri !== 'admin/product/create')
+                    <li class="{{ active_class(Active::checkUriPattern('admin/product*')) }}">
+                       @else 
+                       <li>
+                       @endif
+                        <a href="{{ route('admin.product.index') }}">
+                            <i class="fa fa-circle-o"></i>
+                            <span>{{ trans('labels.backend.product.list') }}</span>
+
+                            @if ($pending_approval > 0)
+                                <span class="label label-danger pull-right">{{ $pending_approval }}</span>
+                            @endif
+                        </a>
+                    </li>
+                  
+                    <li class="{{ active_class(Active::checkUriPattern('admin/product/create*')) }}">
+                        <a href="{{ route('admin.product.create') }}">
+                            <i class="fa fa-circle-o"></i>
+                            <span>{{ trans('labels.backend.product.create') }}</span>
+                        </a>
+                    </li>
+                     
+                </ul>
+            </li>
+            
+         @endauth
+           
+           
 
             <li class="{{ active_class(Active::checkUriPattern('admin/log-viewer*')) }} treeview">
                 <a href="#">

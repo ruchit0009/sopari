@@ -108,7 +108,12 @@ return [
           'list'=>'Customer List',  
             'management'=>'Customer Management',
         ],
-       
+        'product' => [
+            'create' => 'Create Product',
+            'edit' => 'Edit Product',
+            'list' => 'Product List',
+            'management' => 'Product Management',
+        ],
     ],
 
     'frontend' => [

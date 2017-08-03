@@ -159,6 +159,10 @@ return [
             'customer' => [
                 'name'   => 'Name',
             ],
+            'product' => [
+                'name'   => 'Name',
+                'qty'   => 'Quantity',
+            ],
            
             
         ],
