@@ -69,7 +69,10 @@ class OrderController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function edit(OrderModel $order) {
-        return view('backend.order.edit', ['order' => $order]);
+        $orderDetails['product'] = $this->order->orderDetails($order->id);
+        $product = $this->order->getProduct();
+       $customer = $this->order->getCustomer();
+        return view('backend.order.edit', ['order' => $order, 'orderDetails' => $orderDetails,'product'=>$product,'customer'=>$customer]);
     }
 
     /**

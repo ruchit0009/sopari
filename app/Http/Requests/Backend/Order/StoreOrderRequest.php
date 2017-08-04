@@ -4,7 +4,7 @@ namespace App\Http\Requests\Backend\Order;
 
 use App\Http\Requests\Request;
 use Illuminate\Validation\Rule;
-
+use App\Models\Product\ProductModel;
 /**
  * Class StoreOrderRequest.
  */
@@ -32,8 +32,9 @@ class StoreOrderRequest extends Request
         ];
         
         foreach ($this->request->get('product') as $key => $val) {
+            $product = ProductModel::find($val['product_id']);
             $rules['product.'.$key.'.product_id'] = 'required';
-            $rules['product.'.$key.'.qty'] = 'required|numeric';
+            $rules['product.'.$key.'.qty'] = 'required|numeric|max:' . $product['qty'];
             $rules['product.'.$key.'.price'] = 'required|numeric';
         }
         

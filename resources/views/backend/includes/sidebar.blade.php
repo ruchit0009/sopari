@@ -149,6 +149,44 @@
                 </ul>
             </li>
             
+             <li class="{{ active_class(Active::checkUriPattern('admin/order*')) }} treeview">
+                <a href="#">
+                    <i class="fa fa-dashboard"></i>
+                    <span>{{ trans('menus.backend.order.title') }}</span>
+
+                    @if ($pending_approval > 0)
+                        <span class="label label-danger pull-right">{{ $pending_approval }}</span>
+                    @else
+                        <i class="fa fa-angle-left pull-right"></i>
+                    @endif
+                </a>
+
+                <ul class="treeview-menu {{ active_class(Active::checkUriPattern('admin/order*'), 'menu-open') }}" style="display: none; {{ active_class(Active::checkUriPattern('admin/order*'), 'display: block;') }}">
+                  @if(request()->route()->uri !== 'admin/order/create')
+                    <li class="{{ active_class(Active::checkUriPattern('admin/order*')) }}">
+                       @else 
+                       <li>
+                       @endif
+                        <a href="{{ route('admin.order.index') }}">
+                            <i class="fa fa-circle-o"></i>
+                            <span>{{ trans('labels.backend.order.list') }}</span>
+
+                            @if ($pending_approval > 0)
+                                <span class="label label-danger pull-right">{{ $pending_approval }}</span>
+                            @endif
+                        </a>
+                    </li>
+                  
+                    <li class="{{ active_class(Active::checkUriPattern('admin/order/create*')) }}">
+                        <a href="{{ route('admin.order.create') }}">
+                            <i class="fa fa-circle-o"></i>
+                            <span>{{ trans('labels.backend.order.create') }}</span>
+                        </a>
+                    </li>
+                     
+                </ul>
+            </li>
+            
          @endauth
            
            

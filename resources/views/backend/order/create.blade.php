@@ -47,7 +47,7 @@
                      ['class' => 'col-lg-1 control-label required']) }}
 
                 <div class="col-lg-2">
-                    {{ Form::select('product['.$key.'][product_id]', $product,null, ['class' => 'form-control product_id'.$timeIndex,  'required' => 'required','id'=>'product_id', 'placeholder' => trans('validation.attributes.backend.order.product')]) }}
+                    {{ Form::select('product['.$key.'][product_id]', $product,null, ['class' => 'form-control prod product_id'.$timeIndex,  'required' => 'required','id'=>'product_id', 'placeholder' => trans('validation.attributes.backend.order.product')]) }}
                 </div><!--col-lg-3-->
 
                 {{ Form::label('qty', trans('validation.attributes.backend.order.qty'),
@@ -85,7 +85,7 @@
                      ['class' => 'col-lg-1 control-label required']) }}
 
                 <div class="col-lg-2">
-                    {{ Form::select('product[0][product_id]', $product,null, ['class' => 'form-control product_id'.$timeIndex,  'required' => 'required','id'=>'product_id', 'placeholder' => trans('validation.attributes.backend.order.product')]) }}
+                    {{ Form::select('product[0][product_id]', $product,null, ['class' => 'form-control prod product_id'.$timeIndex,  'required' => 'required','id'=>'product_id', 'placeholder' => trans('validation.attributes.backend.order.product')]) }}
                 </div><!--col-lg-3-->
 
                 {{ Form::label('qty', trans('validation.attributes.backend.order.qty'),
@@ -135,7 +135,7 @@
                      ['class' => 'col-lg-1 control-label required']) }}
 
     <div class="col-lg-2">
-        {{ Form::select('prod', $product,null, ['class' => 'form-control ',  'required' => 'required','id'=>'product_id', 'placeholder' => trans('validation.attributes.backend.order.product')]) }}
+        {{ Form::select('prod', $product,null, ['class' => 'form-control prod ',  'required' => 'required','id'=>'product_id', 'placeholder' => trans('validation.attributes.backend.order.product')]) }}
     </div><!--col-lg-3-->
 
     {{ Form::label('qty', trans('validation.attributes.backend.order.qty'),

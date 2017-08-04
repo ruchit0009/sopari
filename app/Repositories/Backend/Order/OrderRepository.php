@@ -22,11 +22,29 @@ class OrderRepository extends BaseRepository {
      */
     const MODEL = OrderModel::class;
 
+    /**
+     * 
+     * @return type
+     */
     public function getProduct() {
         return ProductModel::pluck('name', 'id')->prepend('Select Product', '')->all();
     }
+    
+    /**
+     * 
+     * @return type
+     */
     public function getCustomer() {
         return CustomerModel::pluck('name', 'id')->prepend('Select Customer', '')->all();
+    }
+    
+    /**
+     * 
+     * @param type $id
+     */
+    public function orderDetails($id){
+        
+        return OrderProductModel::where('order_id',$id)->get()->toArray();
     }
 
     /**
@@ -118,17 +136,40 @@ class OrderRepository extends BaseRepository {
      * @throws GeneralException
      */
     public function update(Model $order, array $input) {
+        
+        $this->updateProduct($order, $input);
+        $order->customer_id = $input['customer_id'];
+        $order->qty = 0;
+        $order->grand_total = 0;
+        $order->delivery_charge = 0;
+        $order->packing = 0;
+        $order->final_amount = 0;
 
-        $order->name = $input['name'];
-        $order->qty = $input['qty'];
-
-
-        return DB::transaction(function () use ($order) {
+        return DB::transaction(function () use ($order,$input) {
                     if ($order->save()) {
+                        $this->orderProduct($input, $order->id);
                         return true;
                     }
                     throw new GeneralException(trans('exceptions.backend.order.update_error'));
                 });
+    }
+    
+    public function updateProduct($order,$input){
+        $orderDetails = OrderModel::find($order->id);
+        
+       $customer =  CustomerModel::find($orderDetails['customer_id']);
+        $newPrice = $customer['order_payment'] - $orderDetails['final_amount'];
+        CustomerModel::where('id',$orderDetails['customer_id'])->update(['order_payment'=>$newPrice]);
+        $orderProduct = OrderProductModel::where('order_id',$order->id)->get();
+        
+        foreach ($orderProduct as $prod){
+            $qty = 0;
+               $product = ProductModel::find($prod['product_id']); 
+               $qty = $product['qty'] + $prod['qty'];
+            ProductModel::where('id',$prod['product_id'])->update(['qty'=>$qty]);
+            OrderProductModel::where('id',$prod['id'])->forceDelete();
+        }
+        
     }
 
     /**
